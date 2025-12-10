@@ -24,7 +24,8 @@ body {
 /* Container */
 .container {
   width: 100%;
-  max-width: 480px; /* Mobile-first card view */
+  max-width: 480px;
+  /* Mobile-first card view */
   padding: 20px;
   text-align: center;
   display: flex;
@@ -44,13 +45,19 @@ body {
   letter-spacing: 1px;
 }
 
-.header .logo { font-size: 1.2rem; }
-.header .menu-dots { font-size: 1.5rem; cursor: pointer; }
+.header .logo {
+  font-size: 1.2rem;
+}
+
+.header .menu-dots {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
 
 /* Profile Image */
 .profile-img {
-  width: 120px;
-  height: 120px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   border: 3px solid rgba(255, 255, 255, 0.2);
@@ -99,7 +106,10 @@ body {
   cursor: pointer;
 }
 
-.btn:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
 
 .btn-gold {
   background-color: #c68e42;
@@ -156,14 +166,21 @@ body {
   width: 100%;
   padding-top: 40px;
   padding-bottom: 60px;
-  opacity: 0; 
+  opacity: 0;
   animation: fadeIn 1s ease-in-out forwards;
   animation-delay: 0.2s;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .section-title {
@@ -225,11 +242,11 @@ body {
 }
 
 .skill-badge {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   padding: 8px 15px;
   border-radius: 20px;
   font-size: 0.8rem;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .skill-badge.lang-badge {
@@ -245,18 +262,31 @@ body {
 }
 
 @keyframes bounce {
-  0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-  40% {transform: translateY(-10px);}
-  60% {transform: translateY(-5px);}
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(-10px);
+  }
+
+  60% {
+    transform: translateY(-5px);
+  }
 }
 
 .back-to-top {
-    margin-top: 50px;
-    opacity: 0.5;
-    font-size: 0.8rem;
+  margin-top: 50px;
+  opacity: 0.5;
+  font-size: 0.8rem;
 }
 
 .back-link {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
