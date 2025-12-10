@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { profileData } from './data';
+import { FaLinkedinIn, FaEnvelope, FaChevronDown, FaArrowUp } from 'react-icons/fa';
 
 function App() {
   const { name, position, bio, photo_url, linkedin_url, email_url, about, achievements, experience, education, skills, languages } = profileData;
@@ -26,17 +27,17 @@ function App() {
       {/* Social Icons Row */}
       <div className="social-row">
         <a href={linkedin_url} className="btn btn-icon">
-          <i className="fab fa-linkedin-in"></i>
+          <FaLinkedinIn />
         </a>
 
         <a href={email_url} className="btn btn-icon">
-          <i className="fas fa-envelope"></i>
+          <FaEnvelope />
         </a>
       </div>
 
       {/* VIEW PROFILE BUTTON */}
       <a href="#profile-detail" className="btn btn-outline">View Profile</a>
-      <div className="arrow-down"><i className="fas fa-chevron-down"></i></div>
+      <div className="arrow-down"><FaChevronDown /></div>
 
       <div className="footer-logo">BIZUP.ID</div>
 
@@ -88,7 +89,7 @@ function App() {
         </div>
 
         <div className="back-to-top">
-          <a href="#" className="back-link">Back to Top <i className="fas fa-arrow-up"></i></a>
+          <a href="#" className="back-link">Back to Top <FaArrowUp /></a>
         </div>
       </div>
     </div>
