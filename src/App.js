@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="container">
       <div className="header">
-        <div className="logo">BIZUP.ID</div>
+        <div className="logo"></div>
         <div className="menu-dots">&bull;&bull;&bull;</div>
       </div>
 
@@ -39,7 +39,6 @@ function App() {
       <a href="#profile-detail" className="btn btn-outline">View Profile</a>
       <div className="arrow-down"><FaChevronDown /></div>
 
-      <div className="footer-logo">BIZUP.ID</div>
 
       {/* PROFILE DETAIL SECTION */}
       <div id="profile-detail">
@@ -91,6 +90,8 @@ function App() {
         <div className="back-to-top">
           <a href="#" className="back-link">Back to Top <FaArrowUp /></a>
         </div>
+
+        <div className="footer-logo">BIZUP.ID</div>
       </div>
     </div>
   );
