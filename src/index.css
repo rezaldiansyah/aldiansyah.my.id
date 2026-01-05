@@ -313,13 +313,24 @@ body.light-mode .qr-content {
 
 /* Footer Logo */
 .footer-logo {
+  display: inline-block;
   margin-top: 20px;
   margin-bottom: 40px;
-  padding-top: 10px;
-  padding-bottom: 20px;
+  padding: 10px 20px;
   font-weight: bold;
   color: var(--color-second);
-  opacity: 0.8;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  border-radius: 8px;
+}
+
+.footer-logo:hover {
+  color: white;
+  background: var(--color-second);
+  border-color: var(--color-second);
+  transform: scale(1.05);
 }
 
 /* Profile Detail Section */
