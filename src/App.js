@@ -1,13 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { profileData } from './data';
-import { FaLinkedinIn, FaEnvelope, FaChevronDown, FaArrowUp } from 'react-icons/fa';
+import { FaLinkedinIn, FaEnvelope, FaChevronDown, FaArrowUp, FaDownload, FaQrcode, FaSun, FaMoon } from 'react-icons/fa';
+import QRCode from 'qrcode';
 
 function App() {
-  const { name, position, bio, photo_url, linkedin_url, email_url, about, achievements, experience, education, skills, languages } = profileData;
+  const { name, position, bio, photo_url, linkedin_url, email_url, about, achievements, experience, education, skills, languages, phone } = profileData;
+
+  // Theme Toggle State
+  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [showQR, setShowQR] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
+
+  // Generate QR Code on mount
+  useEffect(() => {
+    QRCode.toDataURL(window.location.href, {
+      width: 200,
+      margin: 2,
+      color: {
+        dark: isDarkMode ? '#374da0' : '#374da0',
+        light: isDarkMode ? '#1a1a2e' : '#ffffff'
+      }
+    }).then(url => setQrCodeUrl(url));
+  }, [isDarkMode]);
+
+  // Apply theme class to body
+  useEffect(() => {
+    document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
+  }, [isDarkMode]);
+
+  // Generate vCard
+  const generateVCard = () => {
+    const nameParts = name.split(',')[0].split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+
+    const vCard = `BEGIN:VCARD
+VERSION:3.0
+N:${lastName};${firstName};;;
+FN:${name.split(',')[0]}
+TITLE:${position.split('|')[0].trim()}
+EMAIL:${email_url.replace('mailto:', '')}
+URL:${linkedin_url}
+NOTE:${bio.substring(0, 200)}...
+END:VCARD`;
+
+    const blob = new Blob([vCard], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${firstName}_${lastName}.vcf`;
+    link.click();
+    URL.revokeObjectURL(url);
+  };
 
   return (
-    <div className="container">
+    <div className={`container ${isDarkMode ? 'dark' : 'light'}`}>
+      {/* Theme Toggle */}
+      <button className="theme-toggle" onClick={() => setIsDarkMode(!isDarkMode)}>
+        {isDarkMode ? <FaSun /> : <FaMoon />}
+      </button>
+
       <div className="header">
         <div className="logo"></div>
         <div className="menu-dots">&bull;&bull;&bull;</div>
@@ -22,18 +75,39 @@ function App() {
         {bio}
       </div>
 
-      <a href="#" className="btn btn-gold">ADD TO CONTACT</a>
+      {/* Action Buttons Row */}
+      <div className="action-row">
+        <button onClick={generateVCard} className="btn btn-primary">
+          <FaDownload /> ADD TO CONTACT
+        </button>
+      </div>
 
       {/* Social Icons Row */}
       <div className="social-row">
-        <a href={linkedin_url} className="btn btn-icon">
+        <a href={linkedin_url} className="btn btn-icon" target="_blank" rel="noopener noreferrer">
           <FaLinkedinIn />
         </a>
 
         <a href={email_url} className="btn btn-icon">
           <FaEnvelope />
         </a>
+
+        <button onClick={() => setShowQR(!showQR)} className="btn btn-icon">
+          <FaQrcode />
+        </button>
       </div>
+
+      {/* QR Code Modal */}
+      {showQR && (
+        <div className="qr-modal" onClick={() => setShowQR(false)}>
+          <div className="qr-content" onClick={e => e.stopPropagation()}>
+            <h3>Scan to Connect</h3>
+            {qrCodeUrl && <img src={qrCodeUrl} alt="QR Code" />}
+            <p>aldiansyah.my.id</p>
+            <button onClick={() => setShowQR(false)} className="btn btn-outline">Close</button>
+          </div>
+        </div>
+      )}
 
       {/* VIEW PROFILE BUTTON */}
       <a href="#profile-detail" className="btn btn-outline">View Profile</a>
