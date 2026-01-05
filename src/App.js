@@ -165,7 +165,7 @@ END:VCARD`;
           <a href="#" className="back-link">Back to Top <FaArrowUp /></a>
         </div>
 
-        <div className="footer-logo">BIZUP.ID</div>
+        <a href="https://bizup.id" target="_blank" rel="noopener noreferrer" className="footer-logo">BIZUP.ID</a>
       </div>
     </div>
   );
