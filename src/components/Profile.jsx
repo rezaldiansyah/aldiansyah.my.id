@@ -44,6 +44,12 @@ const Profile = () => {
           </div>
           <div className="space-y-6">
             <div className="experience-item">
+              <h3 className="font-semibold">CEO & Founder</h3>
+              <p className="text-gray-600">PT Shifr Asia Inovasi</p>
+              <p className="text-gray-500 text-sm">Feb 2026 - Present</p>
+              <p className="text-gray-600">Jakarta, Indonesia</p>
+            </div>
+            <div className="experience-item">
               <h3 className="font-semibold">Chief Business Development Officer</h3>
               <p className="text-gray-600">Pinara Digital · Self-employed</p>
               <p className="text-gray-500 text-sm">Jan 2022 - Present · 3 yrs 3 mos</p>
