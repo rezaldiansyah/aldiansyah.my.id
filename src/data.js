@@ -37,7 +37,7 @@ export const profileData = {
             role: 'CEO & Founder',
             company: 'PT Shifr Asia Inovasi',
             period: 'Feb 2026 - Present',
-            desc: 'Founded and actively direct a consultancy firm specializing in IT Project Management, digital marketing strategies, and enterprise-grade system development. Direct the full lifecycle of complex technology projects, from initial architecture to deployment, ensuring strict alignment with global project management standards (PMP) to meet strategic business objectives. Consult on and implement comprehensive operational frameworks to streamline business processes, acting as the principal advisor for high-level stakeholders in navigating market challenges and unlocking new revenue streams.'
+            desc: 'Founded and actively lead a consultancy focused on IT project management, digital strategy, and enterprise systems. I partner directly with stakeholders to guide tech projects from concept to launch, ensuring they align with global PMP standards. Beyond delivering technology, I help businesses streamline their operations, overcome market challenges, and unlock new revenue streams.'
         },
         {
             role: 'Chief Business Development Officer',
