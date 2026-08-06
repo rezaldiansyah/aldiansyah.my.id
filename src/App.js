@@ -182,7 +182,7 @@ END:VCARD`;
           <a href="#" className="back-link">Back to Top <FaArrowUp /></a>
         </div>
 
-        <a href="https://bizup.id" target="_blank" rel="noopener noreferrer" className="footer-logo">BIZUP.ID</a>
+        <a href="https://vouce.me" target="_blank" rel="noopener noreferrer" className="footer-logo">VOUCE.ME</a>
       </div>
     </div>
   );
