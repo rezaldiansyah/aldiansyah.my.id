@@ -12,9 +12,25 @@ function App() {
   const [showQR, setShowQR] = useState(false);
   const [qrCodeUrl, setQrCodeUrl] = useState('');
 
+  const vCardString = React.useMemo(() => {
+    const nameParts = name.split(',')[0].split(' ');
+    const firstName = nameParts[0];
+    const lastName = nameParts.slice(1).join(' ');
+
+    return `BEGIN:VCARD
+VERSION:3.0
+N:${lastName};${firstName};;;
+FN:${name.split(',')[0]}
+TITLE:${position.split('|')[0].trim()}
+EMAIL:${email_url.replace('mailto:', '')}
+${phone ? `TEL;TYPE=CELL:${phone}\n` : ''}URL:${linkedin_url}
+NOTE:${bio.substring(0, 200)}...
+END:VCARD`;
+  }, [name, position, email_url, phone, linkedin_url, bio]);
+
   // Generate QR Code on mount
   useEffect(() => {
-    QRCode.toDataURL(window.location.href, {
+    QRCode.toDataURL(vCardString, {
       width: 200,
       margin: 2,
       color: {
@@ -22,7 +38,7 @@ function App() {
         light: isDarkMode ? '#1a1a2e' : '#ffffff'
       }
     }).then(url => setQrCodeUrl(url));
-  }, [isDarkMode]);
+  }, [isDarkMode, vCardString]);
 
   // Apply theme class to body
   useEffect(() => {
@@ -35,17 +51,7 @@ function App() {
     const firstName = nameParts[0];
     const lastName = nameParts.slice(1).join(' ');
 
-    const vCard = `BEGIN:VCARD
-VERSION:3.0
-N:${lastName};${firstName};;;
-FN:${name.split(',')[0]}
-TITLE:${position.split('|')[0].trim()}
-EMAIL:${email_url.replace('mailto:', '')}
-${phone ? `TEL;TYPE=CELL:${phone}\n` : ''}URL:${linkedin_url}
-NOTE:${bio.substring(0, 200)}...
-END:VCARD`;
-
-    const blob = new Blob([vCard], { type: 'text/vcard' });
+    const blob = new Blob([vCardString], { type: 'text/vcard' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
