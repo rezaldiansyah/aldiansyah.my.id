@@ -41,7 +41,7 @@ N:${lastName};${firstName};;;
 FN:${name.split(',')[0]}
 TITLE:${position.split('|')[0].trim()}
 EMAIL:${email_url.replace('mailto:', '')}
-URL:${linkedin_url}
+${phone ? `TEL;TYPE=CELL:${phone}\n` : ''}URL:${linkedin_url}
 NOTE:${bio.substring(0, 200)}...
 END:VCARD`;
 

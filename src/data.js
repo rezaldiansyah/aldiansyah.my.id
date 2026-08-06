@@ -1,5 +1,6 @@
 export const profileData = {
-    name: 'Reza Aldiansyah, ST, MTI, PMP, PMO-CP',
+    name: 'Reza Aldiansyah, ST, MTI, PMP, PMI-PMOCP',
+    phone: '+6280000000000', // Ganti dengan nomor asli Anda
     position: 'Digital Transformation Leader | Passionate About Purposeful Tech | CDO-in-the-Making | PMP & PMO-CP | Human-Centered SystemsThinker',
     bio: 'Strategic and people-centered digital transformation leader with 15+ years of multidisciplinary experience across IT, education, nonprofit, and telecom sectors. Adept at aligning business goals with innovative technology solutions to drive efficiency, transparency, and sustainable growth. Recognized for successfully leading cross-functional teams, executing high-stakes projects, and shaping long-term digital strategies.',
     photo_url: 'https://res.cloudinary.com/dief37xrg/image/upload/v1765280185/Reza_Photo_2025_ksweu3.png',
