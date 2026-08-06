@@ -30,25 +30,8 @@ NOTE:${bio.substring(0, 200)}...
 END:VCARD`;
   }, [name, position, email_url, phone, linkedin_url, bio, experience]);
 
-  // Generate QR Code on mount
-  useEffect(() => {
-    QRCode.toDataURL(vCardString, {
-      width: 200,
-      margin: 2,
-      color: {
-        dark: isDarkMode ? '#374da0' : '#374da0',
-        light: isDarkMode ? '#1a1a2e' : '#ffffff'
-      }
-    }).then(url => setQrCodeUrl(url));
-  }, [isDarkMode, vCardString]);
-
-  // Apply theme class to body
-  useEffect(() => {
-    document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
-  }, [isDarkMode]);
-
   // Generate vCard
-  const generateVCard = () => {
+  const generateVCard = React.useCallback(() => {
     const nameParts = name.split(',')[0].split(' ');
     const firstName = nameParts[0];
     const lastName = nameParts.slice(1).join(' ');
@@ -60,7 +43,33 @@ END:VCARD`;
     link.download = `${firstName}_${lastName}.vcf`;
     link.click();
     URL.revokeObjectURL(url);
-  };
+  }, [name, vCardString]);
+
+  // Handle Auto-Download
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('action') === 'download') {
+      generateVCard();
+    }
+  }, [generateVCard]);
+
+  // Generate QR Code on mount
+  useEffect(() => {
+    const downloadUrl = window.location.origin + window.location.pathname + '?action=download';
+    QRCode.toDataURL(downloadUrl, {
+      width: 200,
+      margin: 2,
+      color: {
+        dark: isDarkMode ? '#374da0' : '#374da0',
+        light: isDarkMode ? '#1a1a2e' : '#ffffff'
+      }
+    }).then(url => setQrCodeUrl(url));
+  }, [isDarkMode]);
+
+  // Apply theme class to body
+  useEffect(() => {
+    document.body.className = isDarkMode ? 'dark-mode' : 'light-mode';
+  }, [isDarkMode]);
 
   return (
     <div className={`container ${isDarkMode ? 'dark' : 'light'}`}>
